@@ -5,7 +5,6 @@ class ApiController extends Controller
 	public function actionQuery($code='',$name='',$phone='',$email='')
 	{
 		$user = new User();
-		var_dump($name);
 		if ($code != ''){
 			$user->code = $code;
 		}
