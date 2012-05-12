@@ -81,7 +81,8 @@ class ApiController extends Controller
 
 	public function printCode($user,$ipad_id){
 		try {
-			$client = new SoapClient ( 'http://192.168.1.101:1887/hello?wsdl' );
+			$clientHost = 'http://192.168.1.' . $ipad_id . ':1887/hello?wsdl';
+			$client = new SoapClient ( $clientHost );
 			$info = new SoapPrint($user->name,$user->room,$user->code);
 			$result= $client->Print ($info);
 			if($result->PrintResult=='OK'){
