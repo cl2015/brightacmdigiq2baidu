@@ -67,7 +67,7 @@ class ApiController extends Controller
 		{
 			$model->attributes=$_POST['Question'];
 			if($model->save())
-				$message = 'success';
+				$result['message'] = 'success';
 		}
 		echo CJavaScript::jsonEncode($result);
 		Yii::app()->end();
