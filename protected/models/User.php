@@ -143,6 +143,17 @@ class User extends TrackStarActiveRecord
 		$criteria->compare('code',$this->code,true);
 		$criteria->compare('email',$this->email,true);
 		return User::model()->findAll($criteria);
-
+	}
+	
+	/**
+	 * 显示所有已经checkin的总数
+	 */
+	public function countCheckin(){
+		$dbCommand = Yii::app()->db->createCommand("
+				select sum(has_checked_in) as total from users
+				");
+		$data = $dbCommand->queryAll();
+		return $data["0"]["total"];
+		
 	}
 }

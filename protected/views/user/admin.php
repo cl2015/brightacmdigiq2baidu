@@ -48,6 +48,7 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'code',
 		'email',
 		'gender',
+		'has_checked_in',
 		/*
 		'company',
 		'post',
@@ -62,8 +63,18 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'updated_at',
 		'updated_by',
 		*/
-		array(
-			'class'=>'CButtonColumn',
-		),
+			array(
+					'class'=>'CButtonColumn',
+					'template'=>'{checkin} {update} {view} {delete}',
+					'buttons'=>array
+					(
+							'checkin' => array
+							(
+									'label'=>'checkin',
+									'url'=>'Yii::app()->createUrl("user/checkin", array("id"=>$data->id))',
+							),
+			
+					),
+			),
 	),
 )); ?>

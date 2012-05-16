@@ -72,40 +72,4 @@ class ApiController extends Controller
 		echo CJavaScript::jsonEncode($result);
 		Yii::app()->end();
 	}
-
-	/**
-	 * print & update user
-	 *
-	 */
-
-	public function printCode($user,$ipad_id){
-		try {
-			$clientHost = 'http://192.168.1.' . $ipad_id . ':1887/hello?wsdl';
-			$client = new SoapClient ( $clientHost );
-			$info = new SoapPrint($user->name,$user->room,$user->code);
-			$result= $client->Print ($info);
-			if($result->PrintResult=='OK'){
-				$user->has_checked_in = 1;
-				$user->status = 1;
-				$user->display = '签到成功。';
-				$user->save();
-			}else{
-				$user->display = '测试一下啦';
-			}
-		} catch (Exception $e) {
-			print $e;
-			$user->display = $e;
-		}
-		return $user;
-	}
 }
-class SoapPrint{
-	protected $name, $room, $code;
-	
-	public function __construct($name, $room, $code) {
-		$this->name = $name;
-		$this->room = $room;
-		$this->code = $code;
-	}
-}
-
