@@ -20,6 +20,7 @@ $this->menu=array(
 	'attributes'=>array(
 		'id',
 		'title',
+		'is_approved',
 		'created_at',
 		'created_by',
 		'updated_at',

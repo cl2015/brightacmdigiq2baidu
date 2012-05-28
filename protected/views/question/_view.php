@@ -7,6 +7,10 @@
 	<b><?php echo CHtml::encode($data->getAttributeLabel('title')); ?>:</b>
 	<?php echo CHtml::encode($data->title); ?>
 	<br />
+	
+	<b><?php echo CHtml::encode($data->getAttributeLabel('is_approved')); ?>:</b>
+	<?php echo CHtml::encode($data->is_approved); ?>
+	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('created_at')); ?>:</b>
 	<?php echo CHtml::encode($data->created_at); ?>

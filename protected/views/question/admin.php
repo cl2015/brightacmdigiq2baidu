@@ -44,12 +44,23 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	'columns'=>array(
 		'id',
 		'title',
+		'is_approved',
 		'created_at',
 		'created_by',
 		'updated_at',
 		'updated_by',
 		array(
 			'class'=>'CButtonColumn',
+			'template'=>'{approve} {update} {view} {delete}',
+			'buttons'=>array
+			(
+					'approve' => array
+					(
+							'label'=>'审',
+							'url'=>'Yii::app()->createUrl("question/approve", array("id"=>$data->id))',
+					),
+			
+			),
 		),
 	),
 )); ?>

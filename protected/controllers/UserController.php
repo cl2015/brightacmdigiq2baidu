@@ -31,7 +31,7 @@ class UserController extends Controller
 						'users'=>array('*'),
 				),
 				array('allow', // allow authenticated user to perform 'create' and 'update' actions
-						'actions'=>array('create','update','checkin','showtotal'),
+						'actions'=>array('create','update','checkin','showtotal','me'),
 						'users'=>array('@'),
 				),
 				array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -198,5 +198,7 @@ class UserController extends Controller
 				'total'=>$total,
 		));
 	}
+	
+	
 	
 }

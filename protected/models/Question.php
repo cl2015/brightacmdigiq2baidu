@@ -66,6 +66,7 @@ class Question extends TrackStarActiveRecord
 	{
 		return array(
 			'id' => 'ID',
+			'is_approved'=>'Is Approved',
 			'title' => 'Title',
 			'created_at' => 'Created At',
 			'created_by' => 'Created By',

@@ -50,7 +50,7 @@ class ApiController extends Controller
 	 * list all questions
 	 */
 	public function actionQuestions(){
-		$questions = Question::model()->findAll(array('order'=>'id desc'));
+		$questions = Question::model()->findAll(array('order'=>'id desc','is_approved'=>1));
 		echo CJavaScript::jsonEncode($questions);
 		Yii::app()->end();
 	}

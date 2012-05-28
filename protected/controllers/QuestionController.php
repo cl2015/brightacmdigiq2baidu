@@ -35,7 +35,7 @@ class QuestionController extends Controller
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete'),
+				'actions'=>array('admin','delete','approve'),
 				'users'=>array('admin'),
 			),
 			array('deny',  // deny all users
@@ -171,6 +171,23 @@ class QuestionController extends Controller
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
+		}
+	}
+	
+	/**
+	 * 审批功能
+	 */
+	public function actionApprove($id){
+		$model = $this->loadModel($id);
+		if($model){
+			$model->is_approved = 1;
+			if($model->save()){
+				$this->redirect(array('view','id'=>$model->id));
+			}else{
+				throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
+			}
+		}else{
+			throw new CHttpException(400,'没这个问题。');
 		}
 	}
 }
