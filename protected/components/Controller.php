@@ -28,9 +28,9 @@ class Controller extends CController
 
 	public function printCode($user,$ipad_id='101'){
 		try {
-			$clientHost = 'http://192.168.1.' . $ipad_id . ':1887/HostPrint?wsdl';
+			$clientHost = 'http://192.168.1.102:1887/HostPrint?wsdl';
 			$client = new SoapClient ( $clientHost );
-			$info = new SoapPrint($user->name,$user->room,$user->code);
+			$info = new SoapPrint($user->name,$user->room,$user->code,$ipad_id);
 			$result= $client->Print ($info);
 			if($result->PrintResult=='OK'){
 				$user->has_checked_in = 1;
