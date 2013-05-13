@@ -22,7 +22,7 @@ class ApiController extends Controller
 		Yii::app()->end();
 	}
 
-	public function actionCheckin($ids,$ipad_id)
+	public function actionCheckin($ids,$ipad_id,$checked = false)
 	{
 		$idArray = explode(',', $ids);
 		$participants = array();
@@ -32,7 +32,34 @@ class ApiController extends Controller
 
 			}else{
 				//if check_in?
-				if($user->has_checked_in == 1){
+				if($checked && $user->has_checked_in == 1){
+					$user->display = '已经注册过。';
+				}else{
+					$user->has_checked_in = 1;
+					$user->status = 1;
+					$user = $this->printCode($user,$ipad_id);
+					$user->save();
+				}
+				$participants[]=$user;
+			}
+		}
+		$results = array('results'=>$participants
+		);
+		echo CJavaScript::jsonEncode($results);
+		Yii::app()->end();
+	}
+	
+	public function actionPrint($ids,$ipad_id,$checked = false)
+	{
+		$idArray = explode(',',$ids);
+		$participants = array();
+		foreach ($idArray as $id ){
+			$user = User::model()->findByPk($id);
+			if($user===null){
+		
+			}else{
+				//if check_in?
+				if($checked && $user->has_checked_in == 1){
 					$user->display = '已经注册过。';
 				}else{
 					$user = $this->printCode($user,$ipad_id);

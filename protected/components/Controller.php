@@ -33,13 +33,9 @@ class Controller extends CController
 			$info = new SoapPrint($user->name,$user->room,$user->code,$ipad_id);
 			$result= $client->Print ($info);
 			if($result->PrintResult=='OK'){
-				$user->has_checked_in = 1;
-				$user->status = 1;
-				$user->display = '签到成功。';
-				$user->save();
+				$user->display = '打印成功。';
 			}else{
 				$user->display = '打印失败。';
-				$user->save();
 			}
 		} catch (Exception $e) {
 			print $e;
@@ -47,6 +43,7 @@ class Controller extends CController
 		}
 		return $user;
 	}
+	
 }
 class SoapPrint{
 	protected $name, $room, $code;
