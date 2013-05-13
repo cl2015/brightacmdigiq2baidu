@@ -22,7 +22,7 @@ class ApiController extends Controller
 		Yii::app()->end();
 	}
 
-	public function actionCheckin($ids,$ipad_id,$checked = false)
+	public function actionCheckin($ids,$ipad_id,$checked = true)
 	{
 		$idArray = explode(',', $ids);
 		$participants = array();
